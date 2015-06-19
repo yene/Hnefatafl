@@ -11,36 +11,42 @@ import SpriteKit
 class GameScene: SKScene {
   var board = Matrix(rows: 11, columns: 11)
   let squareSize = CGSizeMake(80, 80)
+  var draggedNode: PieceNode?
  
   override func didMoveToView(view: SKView) {
-//    /* Setup your scene here */
-//    let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-//    myLabel.text = "Hello, World!";
-//    myLabel.fontSize = 65;
-//    myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-//    
-//    self.addChild(myLabel)
-    
     drawBoard()
-
-    
     setupGame()
-    
   }
   
   override func mouseDown(theEvent: NSEvent) {
-    /* Called when a mouse click occurs */
-    
     let location = theEvent.locationInNode(self)
+    let node = self.nodeAtPoint(location)
     
-    let sprite = SKSpriteNode(imageNamed:"Spaceship")
-    sprite.position = location;
-    sprite.setScale(0.5)
+    if let pNode = node as? PieceNode {
+      draggedNode = pNode
+      pNode.moveToParent(self)
+    }
+  }
+  
+  override func mouseDragged(theEvent: NSEvent) {
+    if (draggedNode != nil) {
+      let location = theEvent.locationInNode(self)
+      draggedNode?.position = location
+    }
     
-    let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-    sprite.runAction(SKAction.repeatActionForever(action))
-    
-    self.addChild(sprite)
+  }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    let location = theEvent.locationInNode(self)
+    let nodes = self.nodesAtPoint(location)
+    for node in nodes {
+      if (node.name == "board") {
+        draggedNode?.moveToParent(node)
+        draggedNode = nil
+        break
+      }
+    }
+    draggedNode = nil
   }
   
   override func update(currentTime: CFTimeInterval) {
@@ -54,33 +60,29 @@ class GameScene: SKScene {
     let color = SKColor.greenColor()
     for row in 4...6 {
       for col in 0...1 {
-        let square = SKSpriteNode(color: color, size: squareSize)
-        let s:SKSpriteNode = board[row, col]
-        s.addChild(square)
+        let square = PieceNode(color: color, size: squareSize)
+        board[row, col].addChild(square)
       }
     }
     
     for row in 4...6 {
       for col in 9...10 {
-        let square = SKSpriteNode(color: color, size: squareSize)
-        let s:SKSpriteNode = board[row, col]
-        s.addChild(square)
+        let square = PieceNode(color: color, size: squareSize)
+        board[row, col].addChild(square)
       }
     }
     
     for col in 4...6 {
       for row in 0...1 {
-        let square = SKSpriteNode(color: color, size: squareSize)
-        let s:SKSpriteNode = board[row, col]
-        s.addChild(square)
+        let square = PieceNode(color: color, size: squareSize)
+        board[row, col].addChild(square)
       }
     }
     
     for col in 4...6 {
       for row in 9...10 {
-        let square = SKSpriteNode(color: color, size: squareSize)
-        let s:SKSpriteNode = board[row, col]
-        s.addChild(square)
+        let square = PieceNode(color: color, size: squareSize)
+        board[row, col].addChild(square)
       }
     }
     
@@ -91,38 +93,37 @@ class GameScene: SKScene {
         if (col == 5 && row == 5) {
           continue
         }
-        let square = SKSpriteNode(color: defenderColor, size: squareSize)
-        let s:SKSpriteNode = board[row, col]
-        s.addChild(square)
+        let square = PieceNode(color: defenderColor, size: squareSize)
+        board[row, col].addChild(square)
       }
     }
     
-    let defender1 = SKSpriteNode(color: defenderColor, size: squareSize)
+    let defender1 = PieceNode(color: defenderColor, size: squareSize)
     board[3,5].addChild(defender1)
     
-    let defender2 = SKSpriteNode(color: defenderColor, size: squareSize)
+    let defender2 = PieceNode(color: defenderColor, size: squareSize)
     board[5,3].addChild(defender2)
     
-    let defender3 = SKSpriteNode(color: defenderColor, size: squareSize)
+    let defender3 = PieceNode(color: defenderColor, size: squareSize)
     board[5,7].addChild(defender3)
     
-    let defender4 = SKSpriteNode(color: defenderColor, size: squareSize)
+    let defender4 = PieceNode(color: defenderColor, size: squareSize)
     board[7,5].addChild(defender4)
     
     
     // place king
-    let king = SKSpriteNode(color: SKColor.redColor(), size:squareSize)
+    let king = PieceNode(color: SKColor.redColor(), size:squareSize)
     board[5,5].addChild(king)
     
     // place tower
     let towerColor = SKColor.grayColor()
-    let tower1 = SKSpriteNode(color: towerColor, size: squareSize)
+    let tower1 = PieceNode(color: towerColor, size: squareSize)
     board[0,0].addChild(tower1)
-    let tower2 = SKSpriteNode(color: towerColor, size: squareSize)
+    let tower2 = PieceNode(color: towerColor, size: squareSize)
     board[0,10].addChild(tower2)
-    let tower3 = SKSpriteNode(color: towerColor, size: squareSize)
+    let tower3 = PieceNode(color: towerColor, size: squareSize)
     board[10,0].addChild(tower3)
-    let tower4 = SKSpriteNode(color: towerColor, size: squareSize)
+    let tower4 = PieceNode(color: towerColor, size: squareSize)
     board[10,10].addChild(tower4)
     
     
@@ -139,7 +140,7 @@ class GameScene: SKScene {
         let square = SKSpriteNode(color: color, size: squareSize)
         square.position = CGPointMake(CGFloat(col) * squareSize.width + xOffset,
           CGFloat(row) * squareSize.height + yOffset)
-        square.name = "empty"
+        square.name = "board"
         self.addChild(square)
         board[row, col] = square
         toggle = !toggle
