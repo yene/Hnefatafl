@@ -170,6 +170,31 @@ class GameScene: SKScene {
       }
     }
   }
+  
+  func winnerScreen() {
+    for i in 0...10 {
+      let xx = CGFloat(arc4random_uniform(800))
+      let yy = CGFloat(arc4random_uniform(800))
+      
+      let sprite = SKSpriteNode(imageNamed:"Spaceship")
+      sprite.position = CGPoint(x: xx, y: yy)
+      sprite.setScale(0.5)
+      
+      let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+      sprite.runAction(SKAction.repeatActionForever(action))
+      
+      self.addChild(sprite)
+      
+      let winLabel = SKLabelNode(fontNamed:"Chalkboard")
+      winLabel.text = "You Won";
+      winLabel.fontSize = 60;
+      winLabel.fontColor = NSColor.redColor()
+      winLabel.position = CGPoint(x: xx, y: yy)
+      let action2 = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+      winLabel.runAction(SKAction.repeatActionForever(action2))
+      self.addChild(winLabel)
+    }
+  }
 }
 
 struct Matrix {

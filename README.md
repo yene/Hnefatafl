@@ -22,3 +22,8 @@ king is special death when cornered by 4 attackers or 3 attackers and the throne
 # special tiles
 thrones = all pieces pass over the throne but only the king can sit on it
 tower = act like allie to defender, cant be moved on by attacker or defender, if king moves to tower he wins
+
+
+
+# Test
+* drag items outside of the window
