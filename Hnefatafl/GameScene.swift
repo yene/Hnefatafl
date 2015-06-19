@@ -22,8 +22,9 @@ class GameScene: SKScene {
 //    self.addChild(myLabel)
     
     drawBoard()
-    let s:SKSpriteNode = board[5,5]
-    s.color = SKColor.redColor()
+
+    
+    setupGame()
     
   }
   
@@ -44,6 +45,87 @@ class GameScene: SKScene {
   
   override func update(currentTime: CFTimeInterval) {
       /* Called before each frame is rendered */
+  }
+  
+  func setupGame() {
+    let squareSize = CGSizeMake(50, 50)
+    
+    // place attackers
+    let color = SKColor.greenColor()
+    for row in 4...6 {
+      for col in 0...1 {
+        let square = SKSpriteNode(color: color, size: squareSize)
+        let s:SKSpriteNode = board[row, col]
+        s.addChild(square)
+      }
+    }
+    
+    for row in 4...6 {
+      for col in 9...10 {
+        let square = SKSpriteNode(color: color, size: squareSize)
+        let s:SKSpriteNode = board[row, col]
+        s.addChild(square)
+      }
+    }
+    
+    for col in 4...6 {
+      for row in 0...1 {
+        let square = SKSpriteNode(color: color, size: squareSize)
+        let s:SKSpriteNode = board[row, col]
+        s.addChild(square)
+      }
+    }
+    
+    for col in 4...6 {
+      for row in 9...10 {
+        let square = SKSpriteNode(color: color, size: squareSize)
+        let s:SKSpriteNode = board[row, col]
+        s.addChild(square)
+      }
+    }
+    
+    // place defenders
+    let defenderColor = SKColor.orangeColor()
+    for row in 4...6 {
+      for col in 4...6 {
+        if (col == 5 && row == 5) {
+          continue
+        }
+        let square = SKSpriteNode(color: defenderColor, size: squareSize)
+        let s:SKSpriteNode = board[row, col]
+        s.addChild(square)
+      }
+    }
+    
+    let defender1 = SKSpriteNode(color: defenderColor, size: squareSize)
+    board[3,5].addChild(defender1)
+    
+    let defender2 = SKSpriteNode(color: defenderColor, size: squareSize)
+    board[5,3].addChild(defender2)
+    
+    let defender3 = SKSpriteNode(color: defenderColor, size: squareSize)
+    board[5,7].addChild(defender3)
+    
+    let defender4 = SKSpriteNode(color: defenderColor, size: squareSize)
+    board[7,5].addChild(defender4)
+    
+    
+    // place king
+    let king = SKSpriteNode(color: SKColor.redColor(), size:squareSize)
+    board[5,5].addChild(king)
+    
+    // place tower
+    let towerColor = SKColor.grayColor()
+    let tower1 = SKSpriteNode(color: towerColor, size: squareSize)
+    board[0,0].addChild(tower1)
+    let tower2 = SKSpriteNode(color: towerColor, size: squareSize)
+    board[0,10].addChild(tower2)
+    let tower3 = SKSpriteNode(color: towerColor, size: squareSize)
+    board[10,0].addChild(tower3)
+    let tower4 = SKSpriteNode(color: towerColor, size: squareSize)
+    board[10,10].addChild(tower4)
+    
+    
   }
   
   func drawBoard() {
