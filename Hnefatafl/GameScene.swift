@@ -9,6 +9,11 @@
 import SpriteKit
 
 class GameScene: SKScene {
+  
+  var players = [Player(), Player()]
+  var currentPlayer = 0
+  let myLabel = SKLabelNode(fontNamed:"Arial")
+  
   var board = Matrix(rows: 11, columns: 11)
   let squareSize = CGSizeMake(80, 80)
   var draggedNode: PieceNode?
@@ -127,6 +132,24 @@ class GameScene: SKScene {
     board[10,10].addChild(tower4)
     
     
+    players[0].name = "Player 1 Attacker"
+    players[1].name = "Player 2 Defender"
+    
+    
+    myLabel.text = "\(players[currentPlayer].name) turn";
+    myLabel.fontSize = 25;
+    myLabel.fontColor = NSColor.redColor()
+    myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)/2);
+    
+    self.addChild(myLabel)
+    
+  }
+  
+  func nextPlayer(sender: AnyObject?) {
+    currentPlayer = currentPlayer == 1 ? 0 : 1
+    
+    // hit me
+    myLabel.text = "\(players[currentPlayer].name) turn";
   }
   
   func drawBoard() {

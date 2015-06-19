@@ -36,5 +36,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       return true
   }
   
+  func nextPlayer(sender: AnyObject?) {
+    // forward menuitem to the scene
+    let s:GameScene = self.skView!.scene as! GameScene
+    s.nextPlayer(sender);
+  }
   
 }

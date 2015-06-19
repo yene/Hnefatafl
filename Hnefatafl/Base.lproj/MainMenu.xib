@@ -64,6 +64,22 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Game" id="ESl-YI-N3o">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Game" id="OTX-6F-Qtx">
+                        <items>
+                            <menuItem title="New Game" keyEquivalent="n" id="cF0-eA-O4T"/>
+                            <menuItem title="Next Player" keyEquivalent="b" id="5b1-tm-EhU">
+                                <connections>
+                                    <action selector="nextPlayer:" target="-1" id="FzE-aC-Jpo"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="I SURRENDER 🐔" id="WAK-oe-2MD">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Window" id="19">
                     <menu key="submenu" title="Window" systemMenu="window" id="24">
                         <items>
@@ -111,7 +127,7 @@
             <value key="maxSize" type="size" width="880" height="880"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="880" height="880"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nFl-VZ-smB">
                         <rect key="frame" x="0.0" y="0.0" width="880" height="880"/>
