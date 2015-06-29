@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE7B5D7E1B3477BF00CC19E4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B5D7D1B3477BF00CC19E4 /* Player.swift */; };
+		AE8074DD1B41AA4400BBEF3B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8074DC1B41AA4400BBEF3B /* Game.swift */; };
 		AE876D821B346C0E00EC8CBD /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE876D811B346C0E00EC8CBD /* PieceNode.swift */; };
 		AEAF38AC1B305E1500EFF030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF38AB1B305E1500EFF030 /* AppDelegate.swift */; };
 		AEAF38AE1B305E1500EFF030 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF38AD1B305E1500EFF030 /* GameScene.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		AE34D95B1B30602F00A5A7FF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AE7B5D7D1B3477BF00CC19E4 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		AE8074DC1B41AA4400BBEF3B /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Game.swift; path = ../Game.swift; sourceTree = "<group>"; };
 		AE876D811B346C0E00EC8CBD /* PieceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceNode.swift; sourceTree = "<group>"; };
 		AEAF38A81B305E1500EFF030 /* Hnefatafl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hnefatafl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEAF38AB1B305E1500EFF030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		AEAF38AA1B305E1500EFF030 /* Hnefatafl */ = {
 			isa = PBXGroup;
 			children = (
+				AE8074DC1B41AA4400BBEF3B /* Game.swift */,
 				AE7B5D7D1B3477BF00CC19E4 /* Player.swift */,
 				AE7B5D7C1B34714A00CC19E4 /* Pieces */,
 				AEAF38AB1B305E1500EFF030 /* AppDelegate.swift */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE7B5D7E1B3477BF00CC19E4 /* Player.swift in Sources */,
+				AE8074DD1B41AA4400BBEF3B /* Game.swift in Sources */,
 				AEAF38AE1B305E1500EFF030 /* GameScene.swift in Sources */,
 				AEAF38AC1B305E1500EFF030 /* AppDelegate.swift in Sources */,
 				AE876D821B346C0E00EC8CBD /* PieceNode.swift in Sources */,

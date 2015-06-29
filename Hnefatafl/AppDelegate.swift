@@ -42,4 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     s.nextPlayer(sender);
   }
   
+  func openRules(sender: AnyObject?) {
+    
+    NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://aagenielsen.dk/copenhagen_rules.php")!)
+  }
 }

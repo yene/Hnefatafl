@@ -7,6 +7,7 @@
 
 
 # todo
+* add rules link to help: http://aagenielsen.dk/copenhagen_rules.php
 * resize the windows always to aspect ratio
 
 
