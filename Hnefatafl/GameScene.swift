@@ -72,7 +72,6 @@ class GameScene: SKScene {
   }
   
   func setupGame() {
-    let squareSize = CGSizeMake(50, 50)
     
     // place attackers
     for row in 4...6 {
@@ -160,21 +159,25 @@ class GameScene: SKScene {
         case .Attacker:
           let color = SKColor.greenColor()
           let s = PieceNode(color: color, size: squareSize)
+          s.piece = Piece.Attacker
           square.addChild(s)
         case .Defender:
           let color = SKColor.orangeColor()
           let s = PieceNode(color: color, size: squareSize)
+          s.piece = Piece.Defender
           square.addChild(s)
         case .King:
           let color = SKColor.redColor()
           let s = PieceNode(color: color, size: squareSize)
+          s.piece = Piece.King
           square.addChild(s)
         case .Corner:
           let color = SKColor.grayColor()
           let s = PieceNode(color: color, size: squareSize)
+          s.piece = Piece.Corner
           square.addChild(s)
         default:
-          let one = 1;
+          ()
           // .Empty -> do nothing
         }
         

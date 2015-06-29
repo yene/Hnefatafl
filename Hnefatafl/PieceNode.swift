@@ -13,4 +13,5 @@ class PieceNode: SKSpriteNode {
   // MARK: Properties
   
   weak var entity: GKEntity!
+  var piece: Piece = Piece.Empty
 }
