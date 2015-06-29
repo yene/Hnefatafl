@@ -17,6 +17,7 @@ class GameScene: SKScene {
   var board = Matrix(rows: 11, columns: 11)
   let squareSize = CGSizeMake(80, 80)
   var draggedNode: PieceNode?
+  var game = Game()
  
   override func didMoveToView(view: SKView) {
     drawBoard()
@@ -67,6 +68,7 @@ class GameScene: SKScene {
       for col in 0...1 {
         let square = PieceNode(color: color, size: squareSize)
         board[row, col].addChild(square)
+        game.board[row, col] = Piece.Attacker
       }
     }
     
@@ -74,6 +76,7 @@ class GameScene: SKScene {
       for col in 9...10 {
         let square = PieceNode(color: color, size: squareSize)
         board[row, col].addChild(square)
+        game.board[row, col] = Piece.Attacker
       }
     }
     
@@ -81,6 +84,7 @@ class GameScene: SKScene {
       for row in 0...1 {
         let square = PieceNode(color: color, size: squareSize)
         board[row, col].addChild(square)
+        game.board[row, col] = Piece.Attacker
       }
     }
     
@@ -88,6 +92,7 @@ class GameScene: SKScene {
       for row in 9...10 {
         let square = PieceNode(color: color, size: squareSize)
         board[row, col].addChild(square)
+        game.board[row, col] = Piece.Attacker
       }
     }
     
@@ -100,37 +105,46 @@ class GameScene: SKScene {
         }
         let square = PieceNode(color: defenderColor, size: squareSize)
         board[row, col].addChild(square)
+        game.board[row, col] = Piece.Defender
       }
     }
     
     let defender1 = PieceNode(color: defenderColor, size: squareSize)
     board[3,5].addChild(defender1)
+    game.board[3,5] = Piece.Defender
     
     let defender2 = PieceNode(color: defenderColor, size: squareSize)
     board[5,3].addChild(defender2)
+    game.board[5,3] = Piece.Defender
     
     let defender3 = PieceNode(color: defenderColor, size: squareSize)
     board[5,7].addChild(defender3)
+    game.board[5,7] = Piece.Defender
     
     let defender4 = PieceNode(color: defenderColor, size: squareSize)
     board[7,5].addChild(defender4)
+    game.board[7,5] = Piece.Defender
     
     
     // place king
     let king = PieceNode(color: SKColor.redColor(), size:squareSize)
     board[5,5].addChild(king)
+    game.board[5,5] = Piece.King
     
     // place tower
     let towerColor = SKColor.grayColor()
     let tower1 = PieceNode(color: towerColor, size: squareSize)
     board[0,0].addChild(tower1)
+    game.board[0,0] = Piece.Corner
     let tower2 = PieceNode(color: towerColor, size: squareSize)
     board[0,10].addChild(tower2)
+    game.board[0,10] = Piece.Corner
     let tower3 = PieceNode(color: towerColor, size: squareSize)
     board[10,0].addChild(tower3)
+    game.board[10,0] = Piece.Corner
     let tower4 = PieceNode(color: towerColor, size: squareSize)
     board[10,10].addChild(tower4)
-    
+    game.board[10,10] = Piece.Corner
     
     players[0].name = "Player 1 Attacker"
     players[1].name = "Player 2 Defender"
