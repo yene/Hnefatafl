@@ -14,7 +14,7 @@ class GameScene: SKScene {
   var currentPlayer = 0
   let myLabel = SKLabelNode(fontNamed:"Arial")
   
-  var board = Matrix(rows: 11, columns: 11)
+  var board = SpriteMatrix(rows: 11, columns: 11)
   let squareSize = CGSizeMake(80, 80)
   var draggedNode: PieceNode?
   var game = Game()
@@ -186,7 +186,7 @@ class GameScene: SKScene {
   }
   
   func winnerScreen() {
-    for i in 0...10 {
+    for _ in 0...10 {
       let xx = CGFloat(arc4random_uniform(800))
       let yy = CGFloat(arc4random_uniform(800))
       
@@ -211,7 +211,7 @@ class GameScene: SKScene {
   }
 }
 
-struct Matrix {
+struct SpriteMatrix {
   let rows: Int, columns: Int
   var grid: [SKSpriteNode]
   init(rows: Int, columns: Int) {
