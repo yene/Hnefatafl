@@ -22,6 +22,18 @@ class GameScene: SKScene {
   override func didMoveToView(view: SKView) {
     drawBoard()
     setupGame()
+    drawPieces()
+    
+    players[0].name = "Player 1 Attacker"
+    players[1].name = "Player 2 Defender"
+    
+    
+    myLabel.text = "\(players[currentPlayer].name) turn";
+    myLabel.fontSize = 25;
+    myLabel.fontColor = NSColor.redColor()
+    myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)/2);
+    
+    self.addChild(myLabel)
   }
   
   override func mouseDown(theEvent: NSEvent) {
@@ -63,100 +75,53 @@ class GameScene: SKScene {
     let squareSize = CGSizeMake(50, 50)
     
     // place attackers
-    let color = SKColor.greenColor()
     for row in 4...6 {
       for col in 0...1 {
-        let square = PieceNode(color: color, size: squareSize)
-        board[row, col].addChild(square)
         game.board[row, col] = Piece.Attacker
       }
     }
     
     for row in 4...6 {
       for col in 9...10 {
-        let square = PieceNode(color: color, size: squareSize)
-        board[row, col].addChild(square)
         game.board[row, col] = Piece.Attacker
       }
     }
     
     for col in 4...6 {
       for row in 0...1 {
-        let square = PieceNode(color: color, size: squareSize)
-        board[row, col].addChild(square)
         game.board[row, col] = Piece.Attacker
       }
     }
     
     for col in 4...6 {
       for row in 9...10 {
-        let square = PieceNode(color: color, size: squareSize)
-        board[row, col].addChild(square)
         game.board[row, col] = Piece.Attacker
       }
     }
     
     // place defenders
-    let defenderColor = SKColor.orangeColor()
     for row in 4...6 {
       for col in 4...6 {
-        if (col == 5 && row == 5) {
+        if (col == 5 && row == 5) { // skip throne
           continue
         }
-        let square = PieceNode(color: defenderColor, size: squareSize)
-        board[row, col].addChild(square)
         game.board[row, col] = Piece.Defender
       }
     }
     
-    let defender1 = PieceNode(color: defenderColor, size: squareSize)
-    board[3,5].addChild(defender1)
     game.board[3,5] = Piece.Defender
-    
-    let defender2 = PieceNode(color: defenderColor, size: squareSize)
-    board[5,3].addChild(defender2)
     game.board[5,3] = Piece.Defender
-    
-    let defender3 = PieceNode(color: defenderColor, size: squareSize)
-    board[5,7].addChild(defender3)
     game.board[5,7] = Piece.Defender
-    
-    let defender4 = PieceNode(color: defenderColor, size: squareSize)
-    board[7,5].addChild(defender4)
     game.board[7,5] = Piece.Defender
     
-    
     // place king
-    let king = PieceNode(color: SKColor.redColor(), size:squareSize)
-    board[5,5].addChild(king)
     game.board[5,5] = Piece.King
     
-    // place tower
-    let towerColor = SKColor.grayColor()
-    let tower1 = PieceNode(color: towerColor, size: squareSize)
-    board[0,0].addChild(tower1)
+    // place Corner
     game.board[0,0] = Piece.Corner
-    let tower2 = PieceNode(color: towerColor, size: squareSize)
-    board[0,10].addChild(tower2)
     game.board[0,10] = Piece.Corner
-    let tower3 = PieceNode(color: towerColor, size: squareSize)
-    board[10,0].addChild(tower3)
     game.board[10,0] = Piece.Corner
-    let tower4 = PieceNode(color: towerColor, size: squareSize)
-    board[10,10].addChild(tower4)
     game.board[10,10] = Piece.Corner
-    
-    players[0].name = "Player 1 Attacker"
-    players[1].name = "Player 2 Defender"
-    
-    
-    myLabel.text = "\(players[currentPlayer].name) turn";
-    myLabel.fontSize = 25;
-    myLabel.fontColor = NSColor.redColor()
-    myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)/2);
-    
-    self.addChild(myLabel)
-    
   }
   
   func nextPlayer(sender: AnyObject?) {
@@ -181,6 +146,38 @@ class GameScene: SKScene {
         self.addChild(square)
         board[row, col] = square
         toggle = !toggle
+      }
+    }
+  }
+
+  func drawPieces() {
+    let squareSize = CGSizeMake(50, 50)
+    
+    for row in 0...board.rows-1 {
+      for col in 0...board.columns-1 {
+        let square = board[row, col]
+        switch game.board[row, col] {
+        case .Attacker:
+          let color = SKColor.greenColor()
+          let s = PieceNode(color: color, size: squareSize)
+          square.addChild(s)
+        case .Defender:
+          let color = SKColor.orangeColor()
+          let s = PieceNode(color: color, size: squareSize)
+          square.addChild(s)
+        case .King:
+          let color = SKColor.redColor()
+          let s = PieceNode(color: color, size: squareSize)
+          square.addChild(s)
+        case .Corner:
+          let color = SKColor.grayColor()
+          let s = PieceNode(color: color, size: squareSize)
+          square.addChild(s)
+        default:
+          let one = 1;
+          // .Empty -> do nothing
+        }
+        
       }
     }
   }
