@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AE7B5D7E1B3477BF00CC19E4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B5D7D1B3477BF00CC19E4 /* Player.swift */; };
-		AE8074DD1B41AA4400BBEF3B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8074DC1B41AA4400BBEF3B /* Game.swift */; };
+		AE7BD5871BAC0E8D003A27AE /* CompareBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD5861BAC0E8D003A27AE /* CompareBoardTests.swift */; settings = {ASSET_TAGS = (); }; };
+		AE7BD58A1BAC168C003A27AE /* WinConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD5891BAC168C003A27AE /* WinConditionTests.swift */; settings = {ASSET_TAGS = (); }; };
+		AE7BD58C1BAC30B6003A27AE /* MovementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD58B1BAC30B6003A27AE /* MovementTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AE876D821B346C0E00EC8CBD /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE876D811B346C0E00EC8CBD /* PieceNode.swift */; };
 		AEAF38AC1B305E1500EFF030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF38AB1B305E1500EFF030 /* AppDelegate.swift */; };
 		AEAF38AE1B305E1500EFF030 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF38AD1B305E1500EFF030 /* GameScene.swift */; };
@@ -16,6 +18,15 @@
 		AEAF38B21B305E1500EFF030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEAF38B11B305E1500EFF030 /* Assets.xcassets */; };
 		AEAF38B51B305E1500EFF030 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEAF38B31B305E1500EFF030 /* MainMenu.xib */; };
 		AEAF38C01B305E1500EFF030 /* HnefataflTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF38BF1B305E1500EFF030 /* HnefataflTests.swift */; };
+		AEB9CD341BB06F3D001EBE2A /* BoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9CD331BB06F3D001EBE2A /* BoardNode.swift */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD3D1BB0714B001EBE2A /* death.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AEB9CD361BB0714B001EBE2A /* death.m4a */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD3E1BB0714B001EBE2A /* invalid.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AEB9CD371BB0714B001EBE2A /* invalid.m4a */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD3F1BB0714B001EBE2A /* lost.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AEB9CD381BB0714B001EBE2A /* lost.m4a */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD401BB0714B001EBE2A /* next.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AEB9CD391BB0714B001EBE2A /* next.m4a */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD411BB0714B001EBE2A /* placing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AEB9CD3A1BB0714B001EBE2A /* placing.m4a */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD421BB0714B001EBE2A /* setup.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AEB9CD3B1BB0714B001EBE2A /* setup.m4a */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD431BB0714B001EBE2A /* win.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AEB9CD3C1BB0714B001EBE2A /* win.m4a */; settings = {ASSET_TAGS = (); }; };
+		AEB9CD451BB07162001EBE2A /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9CD441BB07162001EBE2A /* Game.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +42,9 @@
 /* Begin PBXFileReference section */
 		AE34D95B1B30602F00A5A7FF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AE7B5D7D1B3477BF00CC19E4 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		AE8074DC1B41AA4400BBEF3B /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Game.swift; path = ../Game.swift; sourceTree = "<group>"; };
+		AE7BD5861BAC0E8D003A27AE /* CompareBoardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareBoardTests.swift; sourceTree = "<group>"; };
+		AE7BD5891BAC168C003A27AE /* WinConditionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinConditionTests.swift; sourceTree = "<group>"; };
+		AE7BD58B1BAC30B6003A27AE /* MovementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementTests.swift; sourceTree = "<group>"; };
 		AE876D811B346C0E00EC8CBD /* PieceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceNode.swift; sourceTree = "<group>"; };
 		AEAF38A81B305E1500EFF030 /* Hnefatafl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hnefatafl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEAF38AB1B305E1500EFF030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +56,15 @@
 		AEAF38BB1B305E1500EFF030 /* HnefataflTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HnefataflTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEAF38BF1B305E1500EFF030 /* HnefataflTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HnefataflTests.swift; sourceTree = "<group>"; };
 		AEAF38C11B305E1500EFF030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEB9CD331BB06F3D001EBE2A /* BoardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardNode.swift; sourceTree = "<group>"; };
+		AEB9CD361BB0714B001EBE2A /* death.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = death.m4a; path = Audio/death.m4a; sourceTree = "<group>"; };
+		AEB9CD371BB0714B001EBE2A /* invalid.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = invalid.m4a; path = Audio/invalid.m4a; sourceTree = "<group>"; };
+		AEB9CD381BB0714B001EBE2A /* lost.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = lost.m4a; path = Audio/lost.m4a; sourceTree = "<group>"; };
+		AEB9CD391BB0714B001EBE2A /* next.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = next.m4a; path = Audio/next.m4a; sourceTree = "<group>"; };
+		AEB9CD3A1BB0714B001EBE2A /* placing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = placing.m4a; path = Audio/placing.m4a; sourceTree = "<group>"; };
+		AEB9CD3B1BB0714B001EBE2A /* setup.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = setup.m4a; path = Audio/setup.m4a; sourceTree = "<group>"; };
+		AEB9CD3C1BB0714B001EBE2A /* win.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = win.m4a; path = Audio/win.m4a; sourceTree = "<group>"; };
+		AEB9CD441BB07162001EBE2A /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				AE876D811B346C0E00EC8CBD /* PieceNode.swift */,
+				AEB9CD331BB06F3D001EBE2A /* BoardNode.swift */,
 			);
 			name = Pieces;
 			sourceTree = "<group>";
@@ -93,9 +116,10 @@
 		AEAF38AA1B305E1500EFF030 /* Hnefatafl */ = {
 			isa = PBXGroup;
 			children = (
-				AE8074DC1B41AA4400BBEF3B /* Game.swift */,
-				AE7B5D7D1B3477BF00CC19E4 /* Player.swift */,
+				AEB9CD351BB0710C001EBE2A /* Audio */,
 				AE7B5D7C1B34714A00CC19E4 /* Pieces */,
+				AE7B5D7D1B3477BF00CC19E4 /* Player.swift */,
+				AEB9CD441BB07162001EBE2A /* Game.swift */,
 				AEAF38AB1B305E1500EFF030 /* AppDelegate.swift */,
 				AEAF38AD1B305E1500EFF030 /* GameScene.swift */,
 				AEAF38AF1B305E1500EFF030 /* GameScene.sks */,
@@ -109,10 +133,27 @@
 		AEAF38BE1B305E1500EFF030 /* HnefataflTests */ = {
 			isa = PBXGroup;
 			children = (
-				AEAF38BF1B305E1500EFF030 /* HnefataflTests.swift */,
 				AEAF38C11B305E1500EFF030 /* Info.plist */,
+				AEAF38BF1B305E1500EFF030 /* HnefataflTests.swift */,
+				AE7BD5861BAC0E8D003A27AE /* CompareBoardTests.swift */,
+				AE7BD5891BAC168C003A27AE /* WinConditionTests.swift */,
+				AE7BD58B1BAC30B6003A27AE /* MovementTests.swift */,
 			);
 			path = HnefataflTests;
+			sourceTree = "<group>";
+		};
+		AEB9CD351BB0710C001EBE2A /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				AEB9CD361BB0714B001EBE2A /* death.m4a */,
+				AEB9CD371BB0714B001EBE2A /* invalid.m4a */,
+				AEB9CD381BB0714B001EBE2A /* lost.m4a */,
+				AEB9CD391BB0714B001EBE2A /* next.m4a */,
+				AEB9CD3A1BB0714B001EBE2A /* placing.m4a */,
+				AEB9CD3B1BB0714B001EBE2A /* setup.m4a */,
+				AEB9CD3C1BB0714B001EBE2A /* win.m4a */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,9 +236,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEB9CD401BB0714B001EBE2A /* next.m4a in Resources */,
+				AEB9CD421BB0714B001EBE2A /* setup.m4a in Resources */,
+				AEB9CD411BB0714B001EBE2A /* placing.m4a in Resources */,
 				AEAF38B21B305E1500EFF030 /* Assets.xcassets in Resources */,
 				AEAF38B01B305E1500EFF030 /* GameScene.sks in Resources */,
+				AEB9CD3E1BB0714B001EBE2A /* invalid.m4a in Resources */,
 				AEAF38B51B305E1500EFF030 /* MainMenu.xib in Resources */,
+				AEB9CD3F1BB0714B001EBE2A /* lost.m4a in Resources */,
+				AEB9CD3D1BB0714B001EBE2A /* death.m4a in Resources */,
+				AEB9CD431BB0714B001EBE2A /* win.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE7B5D7E1B3477BF00CC19E4 /* Player.swift in Sources */,
-				AE8074DD1B41AA4400BBEF3B /* Game.swift in Sources */,
+				AEB9CD451BB07162001EBE2A /* Game.swift in Sources */,
+				AEB9CD341BB06F3D001EBE2A /* BoardNode.swift in Sources */,
 				AEAF38AE1B305E1500EFF030 /* GameScene.swift in Sources */,
 				AEAF38AC1B305E1500EFF030 /* AppDelegate.swift in Sources */,
 				AE876D821B346C0E00EC8CBD /* PieceNode.swift in Sources */,
@@ -227,6 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE7BD5871BAC0E8D003A27AE /* CompareBoardTests.swift in Sources */,
+				AE7BD58A1BAC168C003A27AE /* WinConditionTests.swift in Sources */,
+				AE7BD58C1BAC30B6003A27AE /* MovementTests.swift in Sources */,
 				AEAF38C01B305E1500EFF030 /* HnefataflTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

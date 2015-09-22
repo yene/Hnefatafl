@@ -8,13 +8,14 @@
 
 import SpriteKit
 
+let kDebugMovement = true
+
 class GameScene: SKScene {
   
-  var players = [Player(), Player()]
+  var players = [Player(type: .Attacker, name: "Attacker"), Player(type: .Defender, name: "Defender")]
   var currentPlayer = 0
-  let myLabel = SKLabelNode(fontNamed:"Arial")
   
-  var board = SpriteMatrix(rows: 11, columns: 11)
+  var spriteBoard = SpriteMatrix(rows: 11, columns: 11)
   let squareSize = CGSizeMake(80, 80)
   var draggedNode: PieceNode?
   var game = Game()
@@ -23,111 +24,146 @@ class GameScene: SKScene {
     drawBoard()
     setupGame()
     drawPieces()
+    displayCurrentPlayer()
     
-    players[0].name = "Player 1 Attacker"
-    players[1].name = "Player 2 Defender"
+  }
+  
+  func displayCurrentPlayer() {
+    let text = SKLabelNode(fontNamed:"Helvetica-Bold")
+    text.text = "\(players[currentPlayer].name)'s turn";
+    text.zPosition = 100
+    text.fontSize = 50
+    text.fontColor = SKColor.whiteColor()
+    text.position = CGPoint(x:CGRectGetMidX(self.frame), y:self.frame.height-220);
     
+    let dropShadow = SKLabelNode(fontNamed:"Helvetica-Bold")
+    dropShadow.text = text.text
+    dropShadow.fontSize = text.fontSize
+    dropShadow.fontColor = SKColor.blackColor()
+    dropShadow.zPosition = -1
+    dropShadow.position = CGPointMake( -3, -3)
+    text.addChild(dropShadow)
     
-    myLabel.text = "\(players[currentPlayer].name) turn";
-    myLabel.fontSize = 25;
-    myLabel.fontColor = NSColor.redColor()
-    myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)/2);
+    let fadeAway = SKAction.fadeOutWithDuration(0.25)
+    let sequence = SKAction.sequence([SKAction.waitForDuration(1), fadeAway, SKAction.removeFromParent()])
+    text.runAction(sequence)
     
-    self.addChild(myLabel)
+    self.addChild(text)
   }
   
   override func mouseDown(theEvent: NSEvent) {
     let location = theEvent.locationInNode(self)
-    let node = self.nodeAtPoint(location)
+    let clickedNode = self.nodeAtPoint(location)
+    if clickedNode == self {return}
     
-    if let pNode = node as? PieceNode {
+    if let pNode = clickedNode as? PieceNode {
+      if (kDebugMovement) {
+        print("start: row \(pNode.row), col \(pNode.col)")
+      }
+      
+      if (players[currentPlayer].type == PlayerType.Attacker) {
+        if (pNode.type != Piece.Attacker) {
+          return;
+        }
+      } else if (players[currentPlayer].type == PlayerType.Defender) {
+        if (pNode.type != Piece.Defender && pNode.type != Piece.King) {
+          return;
+        }
+      }
+      
+      
       draggedNode = pNode
       pNode.moveToParent(self)
     }
   }
   
   override func mouseDragged(theEvent: NSEvent) {
-    if (draggedNode != nil) {
-      let location = theEvent.locationInNode(self)
-      draggedNode?.position = location
-    }
-    
+    draggedNode?.position = theEvent.locationInNode(self)
   }
   
   override func mouseUp(theEvent: NSEvent) {
+    var playSound = true
+    if (draggedNode == nil) { return }
+    
     let location = theEvent.locationInNode(self)
     let nodes = self.nodesAtPoint(location)
     for node in nodes {
-      if (node.name == "board") {
-        draggedNode?.moveToParent(node)
-        draggedNode = nil
-        break
+      if let bNode = node as? BoardNode {
+        if (kDebugMovement) {
+          print("end: row \(bNode.row), col \(bNode.col)")
+        }
+        let m = GameMove(from: GamePoint(row: (draggedNode?.row)!, col: (draggedNode?.col)!), to: GamePoint(row: bNode.row, col: bNode.col))
+        if game.didStayOnSquare(m) {
+          playSound = false
+        }
+        if game.isMoveValid(m) {
+          game.makeMove(m)
+          draggedNode?.moveToParent(node)
+          draggedNode?.position = CGPointMake(0, 0)
+          draggedNode?.col = bNode.col
+          draggedNode?.row = bNode.row
+          draggedNode = nil
+          
+          removeDeadPieces()
+          nextPlayer(nil)
+          
+          if game.didDefenderWin() {
+            self.runAction(SKAction.playSoundFileNamed("lost.m4a", waitForCompletion: false))
+            // TODO: show score screen
+          } else if game.didAttackerWin() {
+            self.runAction(SKAction.playSoundFileNamed("win.m4a", waitForCompletion: false))
+            // TODO: show score screen
+          } else {
+            self.runAction(SKAction.playSoundFileNamed("placing.m4a", waitForCompletion: false))
+          }
+
+          
+          return
+        }
       }
     }
+    
+    let startNode = spriteBoard[draggedNode!.row, draggedNode!.col]
+    draggedNode?.moveToParent(startNode)
+    draggedNode?.position = CGPointMake(0, 0)
     draggedNode = nil
+    if (playSound) {
+      self.runAction(SKAction.playSoundFileNamed("invalid.m4a", waitForCompletion: false))
+    }
   }
   
   override func update(currentTime: CFTimeInterval) {
       /* Called before each frame is rendered */
   }
   
-  func setupGame() {
-    
-    // place attackers
-    for row in 4...6 {
-      for col in 0...1 {
-        game.board[row, col] = Piece.Attacker
-      }
-    }
-    
-    for row in 4...6 {
-      for col in 9...10 {
-        game.board[row, col] = Piece.Attacker
-      }
-    }
-    
-    for col in 4...6 {
-      for row in 0...1 {
-        game.board[row, col] = Piece.Attacker
-      }
-    }
-    
-    for col in 4...6 {
-      for row in 9...10 {
-        game.board[row, col] = Piece.Attacker
-      }
-    }
-    
-    // place defenders
-    for row in 4...6 {
-      for col in 4...6 {
-        if (col == 5 && row == 5) { // skip throne
-          continue
+  func removeDeadPieces() {
+    for row in 0...spriteBoard.rows-1 {
+      for col in 0...spriteBoard.columns-1 {
+        let type = game.board[row, col]
+        let square = spriteBoard[row, col]
+        if (type == .Empty && square.children.count == 1) {
+          square.children[0].runAction(deathAnimation())
         }
-        game.board[row, col] = Piece.Defender
       }
     }
-    
-    game.board[3,5] = Piece.Defender
-    game.board[5,3] = Piece.Defender
-    game.board[5,7] = Piece.Defender
-    game.board[7,5] = Piece.Defender
-    
-    // place king
-    game.board[5,5] = Piece.King
-    
-    // place Corner
-    game.board[0,0] = Piece.Corner
-    game.board[0,10] = Piece.Corner
-    game.board[10,0] = Piece.Corner
-    game.board[10,10] = Piece.Corner
+  }
+  
+  func deathAnimation() -> SKAction {
+    let rotate = SKAction.rotateByAngle(CGFloat(M_PI/2), duration: 0.25)
+    let fadeAway = SKAction.fadeOutWithDuration(0.25)
+    let removeNode = SKAction.removeFromParent()
+    let sound = SKAction.playSoundFileNamed("death.m4a", waitForCompletion: false)
+    let group = SKAction.group([rotate, fadeAway, sound])
+    return SKAction.sequence([group, removeNode])
+  }
+  
+  func setupGame() {
+    game.setup()
   }
   
   func nextPlayer(sender: AnyObject?) {
     currentPlayer = currentPlayer == 1 ? 0 : 1
-    
-    // hit me
-    myLabel.text = "\(players[currentPlayer].name) turn";
+    displayCurrentPlayer()
   }
   
   func drawBoard() {
@@ -135,52 +171,54 @@ class GameScene: SKScene {
     let yOffset:CGFloat = squareSize.width/2
     var toggle:Bool = false
     
-    for row in 0...board.rows-1 {
-      for col in 0...board.columns-1 {
-        let color = toggle ? SKColor.whiteColor() : SKColor.blackColor()
-        let square = SKSpriteNode(color: color, size: squareSize)
+    for row in 0...spriteBoard.rows-1 {
+      for col in 0...spriteBoard.columns-1 {
+        let color = toggle ? SKColor.clearColor() : SKColor.clearColor()
+        let square = BoardNode(color: color, size: squareSize)
+        // draw from top to bottom
         square.position = CGPointMake(CGFloat(col) * squareSize.width + xOffset,
-          CGFloat(row) * squareSize.height + yOffset)
-        square.name = "board"
+          self.size.height - CGFloat(row+1) * squareSize.height + yOffset)
+        
+        square.col = col
+        square.row = row
         self.addChild(square)
-        board[row, col] = square
+        spriteBoard[row, col] = square
         toggle = !toggle
       }
     }
   }
 
   func drawPieces() {
-    let squareSize = CGSizeMake(50, 50)
+    let squareSize = CGSizeMake(80, 80)
     
-    for row in 0...board.rows-1 {
-      for col in 0...board.columns-1 {
-        let square = board[row, col]
-        switch game.board[row, col] {
-        case .Attacker:
-          let color = SKColor.greenColor()
-          let s = PieceNode(color: color, size: squareSize)
-          s.piece = Piece.Attacker
-          square.addChild(s)
-        case .Defender:
-          let color = SKColor.orangeColor()
-          let s = PieceNode(color: color, size: squareSize)
-          s.piece = Piece.Defender
-          square.addChild(s)
-        case .King:
-          let color = SKColor.redColor()
-          let s = PieceNode(color: color, size: squareSize)
-          s.piece = Piece.King
-          square.addChild(s)
-        case .Corner:
-          let color = SKColor.grayColor()
-          let s = PieceNode(color: color, size: squareSize)
-          s.piece = Piece.Corner
-          square.addChild(s)
-        default:
-          ()
-          // .Empty -> do nothing
-        }
+    for row in 0...spriteBoard.rows-1 {
+      for col in 0...spriteBoard.columns-1 {
+        let square = spriteBoard[row, col]
         
+        switch game.board[row, col] {
+          case .Attacker:
+            let s = PieceNode(imageNamed: "Attacker")
+            s.size = squareSize
+            s.col = col
+            s.row = row
+            s.type = Piece.Attacker
+            square.addChild(s)
+          case .Defender:
+            let s = PieceNode(imageNamed: "Defender")
+            s.size = squareSize
+            s.col = col
+            s.row = row
+            s.type = Piece.Defender
+            square.addChild(s)
+          case .King:
+            let s = PieceNode(imageNamed: "King")
+            s.size = squareSize
+            s.col = col
+            s.row = row
+            s.type = Piece.King
+            square.addChild(s)
+          default: ()
+        }
       }
     }
   }

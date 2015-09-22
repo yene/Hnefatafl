@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8121.20" systemVersion="15A204h" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
@@ -74,7 +74,7 @@
                                     <action selector="nextPlayer:" target="-1" id="FzE-aC-Jpo"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="I SURRENDER 🐔" id="WAK-oe-2MD">
+                            <menuItem title="I surrender 🐔" id="WAK-oe-2MD">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                         </items>
@@ -118,13 +118,12 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Hnefatafl" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+        <window title="Hnefatafl" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371" userLabel="Game">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="880" height="880"/>
+            <windowPositionMask key="initialPositionMask" topStrut="YES"/>
+            <rect key="contentRect" x="0.0" y="147" width="880" height="880"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-            <value key="minSize" type="size" width="880" height="880"/>
-            <value key="maxSize" type="size" width="880" height="880"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="880" height="880"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,7 +131,7 @@
                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nFl-VZ-smB">
                         <rect key="frame" x="0.0" y="0.0" width="880" height="880"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="539" customClass="SKView">
+                            <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="539" customClass="SKView">
                                 <rect key="frame" x="0.0" y="0.0" width="880" height="880"/>
                                 <animations/>
                             </customView>
@@ -148,6 +147,7 @@
                 </subviews>
                 <animations/>
             </view>
+            <point key="canvasLocation" x="-35" y="291"/>
         </window>
         <customObject id="494" customClass="AppDelegate" customModule="Hnefatafl" customModuleProvider="target">
             <connections>
@@ -156,5 +156,58 @@
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
+        <window title="Hnefatafl" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Bwt-Zi-mar" userLabel="Startscreen">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="163" y="199" width="880" height="880"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <view key="contentView" id="nbM-Xx-7p4">
+                <rect key="frame" x="0.0" y="0.0" width="880" height="880"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-6P-7w0">
+                        <rect key="frame" x="0.0" y="0.0" width="880" height="880"/>
+                        <animations/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="Splash" id="NgP-0L-3D2"/>
+                    </imageView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0b-1c-vVR">
+                        <rect key="frame" x="300" y="517" width="250" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Local Hotseat Game" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hN4-8j-V5n">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nF1-6G-VS4">
+                        <rect key="frame" x="300" y="484" width="250" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Online Multiplayer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v5f-CR-5X4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yyg-Qo-RSO">
+                        <rect key="frame" x="300" y="451" width="250" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Attacker vs AI" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sa1-lH-F7G">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bPP-ug-P5b">
+                        <rect key="frame" x="300" y="418" width="250" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Defener vs AI" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1uy-Zm-W0A">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                </subviews>
+                <animations/>
+            </view>
+            <point key="canvasLocation" x="-55" y="321"/>
+        </window>
     </objects>
+    <resources>
+        <image name="Splash" width="1564" height="880"/>
+    </resources>
 </document>

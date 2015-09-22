@@ -8,7 +8,12 @@
 
 import Foundation
 
-class Player {
-  // Game Kit thingy,
-  var name = "Player"
+enum PlayerType {
+  case Attacker
+  case Defender
+}
+
+struct Player {
+  var type: PlayerType
+  var name: String
 }
